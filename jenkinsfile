@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'apache-maven-3.9.9' // Assumes you have configured Maven in Jenkins with the name 'M3'
-        jdk 'JDK21' // Assumes you have configured a JDK in Jenkins with the name 'JDK11'
+        maven 'M3' // Assumes you have configured Maven in Jenkins with the name 'M3'
+        jdk 'JDK11' // Assumes you have configured a JDK in Jenkins with the name 'JDK11'
     }
 
     stages {
