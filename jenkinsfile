@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'apache-maven-3.9.9' // Assumes you have configured Maven in Jenkins with the name 'M3'
+        jdk 'JDK21' // Assumes you have configured a JDK in Jenkins with the name 'JDK11'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from the repository
+                checkout scm
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                // Compile the code using Maven
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run unit tests using Maven
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                // Package the application as a JAR or WAR
+                sh 'mvn package'
+            }
+        }
+
+      
+    }
+
+    post {
+        success {
+            echo 'Build completed successfully!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
+    }
+}
